@@ -25,14 +25,16 @@ def menu():
             nuevaConexion.ingresarElemento()
 
         if op == 2:
-            print('creacion de clientes: ')
-            opt = int(input('1.- crear \n2.- modificar \n3.- eliminar \n4.- consultar' )) 
+            print('CRUD de cliente: ')
+            opt = int(input('1.- crear \n2.- modificar \n3.- eliminar \n4.- consultar' ))
+             
 
             if opt == 1:
                 nuevaConexion.ingresarElemento()
             nuevaConexion.mostrarElemento()
 
         if op == 7:
+            print("adios")
             menu = False
 
 menu()

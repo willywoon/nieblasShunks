@@ -17,10 +17,28 @@ class Connection:
 
     def mostrarTodos(self):
 
-        sql = 'SELECT * FROM clientes '
+        sql = 'SELECT * FROM clientes'
+        try:
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchall()
+            for cliente in resultado:
+                print(cliente)
+        except Exception as e:
+            raise
+        finally:
+            self.connection.close()
     
-    def mostrarElemento(self):
-        pass
+    def mostrarCliente(self, id):
+        
+        sql = 'SELECT * FROM cuentas WHERE idcliente = {}'.format(id)
+        try:
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchone()
+            print(resultado)
+        except Exception as e:
+            raise
+        finally:
+            self.connection.close()
 
     def modificarElemento(self):
         pass
