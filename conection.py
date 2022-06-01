@@ -16,7 +16,6 @@ class Connection:
         print('conexion establecida------------------->')
 
     def mostrarTodos(self):
-
         sql = 'SELECT * FROM clientes'
         try:
             self.cursor.execute(sql)
@@ -29,19 +28,18 @@ class Connection:
             self.connection.close()
     
     def mostrarCliente(self, id):
-        
-        sql = "SELECT * FROM cuentas WHERE idcliente = '{}'".format(id)
+        sql = "SELECT * FROM cuentas WHERE idcuenta = '{}'".format(id)
         try:
             self.cursor.execute(sql)
             resultado = self.cursor.fetchone()
-            print(resultado)
         except Exception as e:
             raise
         finally:
             self.connection.close()
+            return resultado
 
     def modificarElemento(self,id, estado):
-        sql = "UPDATE cuentas SET estado = {} WHERE idcliente = '{}'".format(estado, id)
+        sql = "UPDATE cuentas SET estado = {} WHERE idcuenta = '{}'".format(estado, id)
         try:
             self.cursor.execute(sql)
             self.connection.commit()
@@ -50,7 +48,6 @@ class Connection:
         finally:
             self.connection.close()
     
-
     def borrarElemento(self):
         pass
 

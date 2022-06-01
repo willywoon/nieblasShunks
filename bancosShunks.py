@@ -3,14 +3,14 @@ class Cliente:
     #--------------constructor------------------------>
 
 
-    def __init__(self, codigoCuenta = '1234', codigoCliente = '2342', nombre = 'Wonka', idUsuario = 'defaul') :
+    def __init__(self, codigoCuenta = '1234', tipoCuenta = 'Vista', saldo = 0, codigoCliente = '2342', idUsuario = 'defaul', estado = 1, nombre = 'Wonka') :
         
         self.__codigoCuenta = codigoCuenta          #idcuenta
         self.__codigoCliente = codigoCliente
         self.__nombre = nombre 
-        self.__estado = 1                           #estado 0 = desactivada, 1 = activa, 2 = transicion, 99 = cambio de estado en la papelera
-        self.__saldo = 0                            #saldo inicial 0
-        self.__tipoCuenta = 'Vista'
+        self.__estado = estado                           #estado 0 = desactivada, 1 = activa, 2 = transicion, 99 = cambio de estado en la papelera
+        self.__saldo = saldo                            #saldo inicial 0
+        self.__tipoCuenta = tipoCuenta
         self.__idUsuario = idUsuario
 
         print('cliente creado')

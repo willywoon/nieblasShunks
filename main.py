@@ -1,6 +1,12 @@
-from menu import menu
-from login import login
+from menu import menuCliente
+from login import loginn
+from menu import menu2
 
-login()
-menu()
+loginn()
 
+if loginn():
+    menu2()
+elif loginn() == False:
+    menuCliente()
+else:
+    print('error!')
