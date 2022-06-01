@@ -30,7 +30,7 @@ class Connection:
     
     def mostrarCliente(self, id):
         
-        sql = 'SELECT * FROM cuentas WHERE idcliente = {}'.format(id)
+        sql = "SELECT * FROM cuentas WHERE idcliente = '{}'".format(id)
         try:
             self.cursor.execute(sql)
             resultado = self.cursor.fetchone()
@@ -40,11 +40,30 @@ class Connection:
         finally:
             self.connection.close()
 
-    def modificarElemento(self):
-        pass
+    def modificarElemento(self,id, estado):
+        sql = "UPDATE cuentas SET estado = {} WHERE idcliente = '{}'".format(estado, id)
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception as e:
+            raise
+        finally:
+            self.connection.close()
+    
 
     def borrarElemento(self):
         pass
 
-    def ingresarElemento(self, idcuenta, tipocuenta, saldo, idcliente, idusario):
-        sql = 'INSERT INTO cuentas (idcuenta, tipocuenta, saldo, idcliente, idusario) VALUE ({}, {}, {}, {}, {})'.format(idcuenta, tipocuenta, saldo, idcliente, idusario)
+    def ingresarCliente(self, idcuenta, tipocuenta, saldo, codigoCliente, idusuario, estado):
+        sql = "INSERT INTO cuentas (idcuenta, codigocliente, tipocuenta, saldo, idusuario, estado) VALUE ('{}', '{}', '{}', '{}', '{}', {})".format(idcuenta, codigoCliente, tipocuenta, saldo, idusuario, estado)
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception as e:
+            raise
+        finally:
+            self.connection.close()
+
+
+#nw = Connection()
+#nw.ingresarCliente('sasdhs', 'vista', 0, '18728y', '715681', 1)

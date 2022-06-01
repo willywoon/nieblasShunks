@@ -1,4 +1,5 @@
 from conection import Connection
+from bancosShunks import Cliente
 
 def menu():
 
@@ -26,15 +27,24 @@ def menu():
 
         if op == 2:
             print('CRUD de cliente: ')
-            opt = int(input('1.- crear \n2.- modificar \n3.- eliminar \n4.- consultar' ))
+            opt = int(input('1.- crear \n2.- modificar \n3.- eliminar \n4.- consultar:\n' ))
              
-
             if opt == 1:
-                nuevaConexion.ingresarElemento()
-            nuevaConexion.mostrarElemento()
+                nwCliente = Cliente()
+                nuevaConexion.ingresarCliente(nwCliente.getCodigoCuenta(), nwCliente.getTipoCuenta(), nwCliente.getSaldo(), nwCliente.getCodigoCliente(), nwCliente.getIdUsuario(), nwCliente.getEstado())
+
+            if opt == 4:
+                print('consulta de cliente')
+                id = input('ingrese id')
+                print(nuevaConexion.mostrarCliente(id))
+                
 
         if op == 7:
             print("adios")
             menu = False
+
+def menu2():
+    pass
+
 
 menu()

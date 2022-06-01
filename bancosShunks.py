@@ -1,13 +1,17 @@
 class Cliente:
 
-    def __init__(self, codigoCuenta = '1234', codigoCliente = '2342', nombre = 'Wonka'):
+    #--------------constructor------------------------>
+
+
+    def __init__(self, codigoCuenta = '1234', codigoCliente = '2342', nombre = 'Wonka', idUsuario = 'defaul') :
         
-        self.__codigoCuenta = codigoCuenta
+        self.__codigoCuenta = codigoCuenta          #idcuenta
         self.__codigoCliente = codigoCliente
         self.__nombre = nombre 
-        self.__estado = True
-        self.__saldo = 0
+        self.__estado = 1                           #estado 0 = desactivada, 1 = activa, 2 = transicion, 99 = cambio de estado en la papelera
+        self.__saldo = 0                            #saldo inicial 0
         self.__tipoCuenta = 'Vista'
+        self.__idUsuario = idUsuario
 
         print('cliente creado')
 
@@ -31,6 +35,9 @@ class Cliente:
     def getTipoCuenta(self):
         return self.__tipoCuenta
 
+    def getIdUsuario(self):
+        return self.__idUsuario
+        
     #--------------setters------------------------>
 
     def setNombre(self, newNombre):
@@ -53,7 +60,33 @@ class Cliente:
 
     #--------------functions------------------------>
   
-    def consultarSaldo():
-        pass
+    def consultarSaldo(self):
+        if self.getEstado() == 1:
+            return self.getSaldo()
 
+    def depositar(self,monto):
+        accionExitosa = False
+        if self.getEstado() == 1 and monto > 0: 
+            nuevoSaldo = self.getSaldo() + monto
+            self.setSaldo(nuevoSaldo)
+            print("depositado")
+            accionExitosa = True
+            return accionExitosa
+        else:
+            return accionExitosa
+
+    def girar(self, monto):
+        if self.getEstado() == 1 and monto <= self.getSaldo() and monto > 0: 
+            nuevoSaldo = self.getSaldo() - monto
+            self.setSaldo(nuevoSaldo)
+            return True
+        else:
+            return False
+
+'''
 nuevoCliente = Cliente('2323', '35')
+print(nuevoCliente.consultarSaldo())
+nuevoCliente.depositar(1000)
+print(nuevoCliente.girar(200))
+print(nuevoCliente.consultarSaldo())
+'''
