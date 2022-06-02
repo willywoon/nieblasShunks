@@ -75,7 +75,7 @@ class Connection:
             raise
 
     def mostrarUsuarios(self):
-        sql = "SELECT nombreUsuario, password, tipousuario  FROM usuarios"
+        sql = "SELECT * FROM usuarios"
         try:
             self.cursor.execute(sql)
             resultado = self.cursor.fetchall()

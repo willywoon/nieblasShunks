@@ -2,8 +2,8 @@ from traceback import print_tb
 from conection import Connection
 
 
-def comparacionPassYUser(pass1, pass2, user1, user2):
-    if pass1 == pass2 and user1 == user2:
+def comparacionPass(pass1, pass2):
+    if pass1 == pass2:
         return True
     else:
         return False
@@ -20,12 +20,15 @@ def loginn():
         ingrese usuario y contraseña
      """)
 
+     while 
+
     user = input('ingrese usuario: ')
     password = input('ingrese contraseña: ')
 
     for usuario in listaUser:
-        index = usuario.index(user)
-        print(index)
+        if user == usuario[0]:  
+            if comparacionPass(password, usuario[3]):
+                pass
     #if user in listaUser:
      #   if user.tipo == 'adm':
       #      user == listaUser
