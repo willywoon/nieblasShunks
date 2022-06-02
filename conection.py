@@ -15,6 +15,8 @@ class Connection:
         self.cursor = self.connection.cursor()
         print('conexion establecida------------------->')
 
+#-------------------clientes----------------->
+
     def mostrarTodos(self):
         sql = 'SELECT * FROM clientes'
         try:
@@ -52,7 +54,7 @@ class Connection:
         pass
 
     def ingresarCliente(self, idcuenta, tipocuenta, saldo, codigoCliente, idusuario, estado):
-        sql = "INSERT INTO cuentas (idcuenta, codigocliente, tipocuenta, saldo, idusuario, estado) VALUE ('{}', '{}', '{}', '{}', '{}', {})".format(idcuenta, codigoCliente, tipocuenta, saldo, idusuario, estado)
+        sql = "INSERT INTO cuentas (idcuenta, codigocliente, tipocuenta, saldo, estado) VALUE ('{}', '{}', '{}', '{}', {})".format(idcuenta, codigoCliente, tipocuenta, saldo, idusuario, estado)
         try:
             self.cursor.execute(sql)
             self.connection.commit()
@@ -62,5 +64,32 @@ class Connection:
             self.connection.close()
 
 
+#------------usuarios------------------->
+
+    def ingresarUsuario(self, idUsuario, nombreCliente, nombreUsuario, password, estado, tipo):
+        sql = "INSERT INTO usuarios (codigousuario, nombrecliente, nombreusuario, password, estado, tipousuario) VALUE ('{}', '{}', '{}', '{}', {}, '{}')".format(idUsuario, nombreCliente, nombreUsuario, password, estado, tipo)
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+        except Exception as e:
+            raise
+        finally:
+            self.connection.close()
+
+    def mostrarUsuarios(self):
+        sql = "SELECT nombreUsuario, password, tipousuario  FROM usuarios"
+        try:
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchall()
+            print(resultado)
+        except Exception as e: 
+            raise
+        finally:
+            self.connection.close()
+            return resultado
+
+
 #nw = Connection()
 #nw.ingresarCliente('sasdhs', 'vista', 0, '18728y', '715681', 1)
+nw = Connection()
+nw.ingresarUsuario('kdjf34', 'Luna', 'mushunga', '123456', 1, 'cliente')

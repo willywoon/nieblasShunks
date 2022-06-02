@@ -1,4 +1,9 @@
+from conection import Connection
+
 def loginn():
+
+    db = Connection()
+    listaUser = db.mostrarUsuarios()
     
     print("""
         Bienvenido a BancosShunks 1.0
@@ -8,8 +13,13 @@ def loginn():
     user = input('ingrese usuario: ')
     password = input('ingrese contraseña: ')
 
-    if user in listaUsers:
+    
+    (nombre)
+
+
+    if user in listaUser:
         if user.tipo == 'adm':
+            user == listaUser
             return True
         elif user.tipo =='cliente':
             return False

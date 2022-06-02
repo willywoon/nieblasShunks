@@ -89,7 +89,7 @@ def menu2():
             
             if opt == 2:
                 print('Modificar cliente (solo estado)')
-                id = input('ingrese id cuneta: ')
+                id = input('ingrese codigo cuenta: ')
                 nuevaConexion.modificarElemento(id)
 
             if opt == 4:
