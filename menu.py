@@ -74,8 +74,16 @@ def menu2():
         op = int(input('ingrese opcion: '))
 
         if op == 1:
-            print('Crear cuenta: ')
+            print('Crear cuenta usuarios')
+            a = input("ingrese codigo usuario: ")
+            b = input("ingrese nombre cliente: ")
+            c = input("ingrese nombre usuario (para loguiar): ")
+            d = input("ingrese password usuario (contraseña para loguaer): ")
+            e = input("ingrese estado usuario")
+            f = input("ingrese tipo usuario")
 
+            nuevaConexion.ingresarUsuario(a, b, c, d, e, f)
+            nuevaConexion.mostrarUsuarios()
 
         if op == 2:
 
