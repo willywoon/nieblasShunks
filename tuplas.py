@@ -1,10 +1,21 @@
 a = ("dato1", "dato2")
 b = ("dato3", "dato4")
 
-c= (a, b)
+c = (a, b)
+
+z = 2 + 2 
 
 
-for elemento in c:
+while z == 4:
+    
+    print('wolo')
 
-    if elemento[0] == "dato3":
-        print(elemento[1])
+#for 
+
+
+#for elemento in c:
+
+ #   if elemento[0] == "dato3":
+  #      print(elemento[1])
+
+        

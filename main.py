@@ -2,11 +2,17 @@ from menu import menuCliente
 from login import loginn
 from menu import menu2
 
-loginn()
 
-if loginn():
+print("""
+        Bienvenido a BancosShunks 1.0
+     """)
+
+
+tipo = loginn()
+
+if tipo == 'adm':
     menu2()
-elif loginn() == False:
+elif tipo == 'cliente':
     menuCliente()
 else:
     print('error!')
