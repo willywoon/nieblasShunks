@@ -1,21 +1,9 @@
-a = ("dato1", "dato2")
-b = ("dato3", "dato4")
+from bancosShunks import Cuenta
 
-c = (a, b)
+w = Cuenta(saldo=1000000)
 
-z = 2 + 2 
+print(w.consultarSaldo())
 
+w.girar(100)
 
-while z == 4:
-    
-    print('wolo')
-
-#for 
-
-
-#for elemento in c:
-
- #   if elemento[0] == "dato3":
-  #      print(elemento[1])
-
-        
+print(w.consultarSaldo())

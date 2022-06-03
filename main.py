@@ -1,18 +1,19 @@
 from menu import menuCliente
 from login import loginn
-from menu import menu2
+from menu import menuAdministrador
 
 
 print("""
         Bienvenido a BancosShunks 1.0
      """)
 
-
-tipo = loginn()
+usuario = loginn()
+tipo = usuario[5]
 
 if tipo == 'adm':
-    menu2()
+    menuAdministrador()
 elif tipo == 'cliente':
-    menuCliente()
+    menuCliente(usuario)
 else:
     print('error!')
+

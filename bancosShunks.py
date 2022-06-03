@@ -1,19 +1,18 @@
-class Cliente:
+class Cuenta:
 
     #--------------constructor------------------------>
 
 
-    def __init__(self, codigoCuenta = '1234', tipoCuenta = 'Vista', saldo = 0, codigoCliente = '2342', idUsuario = 'defaul', estado = 1, nombre = 'Wonka') :
+    def __init__(self, codigoCuenta = '1234', tipoCuenta = 'Vista', saldo = 0, codigoUsuario = '2342', estado = 1, nombre = 'Wonka') :
         
         self.__codigoCuenta = codigoCuenta          #idcuenta
-        self.__codigoCliente = codigoCliente
+        self.__codigoCliente = codigoUsuario
         self.__nombre = nombre 
         self.__estado = estado                           #estado 0 = desactivada, 1 = activa, 2 = transicion, 99 = cambio de estado en la papelera
         self.__saldo = saldo                            #saldo inicial 0
         self.__tipoCuenta = tipoCuenta
-        self.__idUsuario = idUsuario
 
-        print('cliente creado')
+        #print('cliente creado')
 
     #--------------gestters------------------------>
     
@@ -34,9 +33,6 @@ class Cliente:
 
     def getTipoCuenta(self):
         return self.__tipoCuenta
-
-    def getIdUsuario(self):
-        return self.__idUsuario
         
     #--------------setters------------------------>
 
@@ -79,14 +75,16 @@ class Cliente:
         if self.getEstado() == 1 and monto <= self.getSaldo() and monto > 0: 
             nuevoSaldo = self.getSaldo() - monto
             self.setSaldo(nuevoSaldo)
+            print('giro realizado')
             return True
         else:
+            print("no se puede girar")
             return False
 
-'''
-nuevoCliente = Cliente('2323', '35')
-print(nuevoCliente.consultarSaldo())
-nuevoCliente.depositar(1000)
-print(nuevoCliente.girar(200))
-print(nuevoCliente.consultarSaldo())
-'''
+
+#nuevoCliente = Cuenta('2323', '35', saldo= 1020)
+#print(nuevoCliente.consultarSaldo())
+#nuevoCliente.depositar(1000)
+#print(nuevoCliente.girar(200))
+#print(nuevoCliente.consultarSaldo())
+

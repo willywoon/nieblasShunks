@@ -26,43 +26,45 @@ class Connection:
                 print(cliente)
         except Exception as e:
             raise
-        finally:
-            self.connection.close()
     
-    def mostrarCliente(self, id):
+    def mostrarCuentaCodigoUsuario(self, id):
+        sql = "SELECT * FROM cuentas WHERE codigousuario = '{}'".format(id)
+        try:
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchone()
+            return resultado
+        except Exception as e:
+            raise
+
+    def mostrarCuentaIdCuenta(self, id):
         sql = "SELECT * FROM cuentas WHERE idcuenta = '{}'".format(id)
         try:
             self.cursor.execute(sql)
             resultado = self.cursor.fetchone()
+            return resultado
         except Exception as e:
             raise
-        finally:
-            self.connection.close()
-            return resultado
 
-    def modificarElemento(self,id, estado):
-        sql = "UPDATE cuentas SET estado = {} WHERE idcuenta = '{}'".format(estado, id)
+    def modificarCuenta(self,id, monto):
+        sql = "UPDATE cuentas SET saldo = {} WHERE idcuenta = '{}'".format(monto, id)
         try:
             self.cursor.execute(sql)
             self.connection.commit()
+            print("saldo modificado")
         except Exception as e:
             raise
-        finally:
-            self.connection.close()
     
-    def borrarElemento(self):
+    def borrarCuenta(self):
         pass
 
-    def ingresarCliente(self, idcuenta, tipocuenta, saldo, codigoCliente, idusuario, estado):
-        sql = "INSERT INTO cuentas (idcuenta, codigocliente, tipocuenta, saldo, estado) VALUE ('{}', '{}', '{}', '{}', {})".format(idcuenta, codigoCliente, tipocuenta, saldo, idusuario, estado)
+    def ingresarCuenta(self, idcuenta, tipocuenta, saldo, codigoUsuario, estado):
+        sql = "INSERT INTO cuentas (idcuenta, tipocuenta, saldo, codigousuario, estado) VALUE ('{}', '{}', '{}', '{}', {})".format(idcuenta, tipocuenta, saldo, codigoUsuario, estado)
         try:
             self.cursor.execute(sql)
             self.connection.commit()
+            print("cuenta ingresada")
         except Exception as e:
             raise
-        finally:
-            self.connection.close()
-
 
 #------------usuarios------------------->
 
@@ -71,6 +73,7 @@ class Connection:
         try:
             self.cursor.execute(sql)
             self.connection.commit()
+            print("usuario ingresado :)")
         except Exception as e:
             raise
 
@@ -83,12 +86,14 @@ class Connection:
         except Exception as e: 
             raise
 
-
     def cerrarConexion(self):
         self.connection.close()
+        print('conexion cerrada!')
 
 #nw = Connection()
 #nw.ingresarUsuario('sasdhs', 'vista', 0, '18728y', '715681', 1)
 #nw = Connection()
 #nw.ingresarUsuario('ggsefg', 'LunaAdm', 'mushweunga', '12we3456', 1, 'adm')
 #nw.ingresarUsuario('kdjf34', 'Luna', 'mushunga', '123456', 1, 'cliente')
+
+#nw.modificarCuenta(234, 100)

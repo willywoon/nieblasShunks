@@ -11,10 +11,9 @@ def loginn():
 
     db = Connection()
     listaUser = db.mostrarUsuarios()
-    #print(listaUser)
+    #print(listaUse
 
     pedasitos = True
-    tipo = ''
 
     while pedasitos:
 
@@ -26,7 +25,6 @@ def loginn():
             if user == usuario[2]:  
                 if comparacionPass(password, usuario[3]):
                     pedasitos == False
-                    tipo = usuario[5]
-                    return tipo
+                    return usuario
 
 
