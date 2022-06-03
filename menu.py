@@ -84,7 +84,7 @@ def menuAdministrador():
 
         if op == 1:
             print('Crear cuenta de usuarios (adm o cliente)')
-            a = input("ingrese codigo cuenta: ")
+            a = input("ingrese codigo usuario: ")
             b = input("ingrese nombre cliente: ")
             c = input("ingrese nombre usuario (para loguiar): ")
             d = input("ingrese password usuario (contraseña para loguaer): ")
@@ -96,8 +96,8 @@ def menuAdministrador():
             if f == 'cliente':
 
                 print("creacion cliente default con nombre y codigo de usuario")
-
-                nuevaCuenta = Cuenta(codigoUsuario = a, nombre = b)
+                idCuenta = input('ingrese id cuenta: ')
+                nuevaCuenta = Cuenta(codigoCuenta = idCuenta, nombre = b, codigoUsuario = a)
                 nuevaConexion.ingresarCuenta(nuevaCuenta.getCodigoCuenta(), nuevaCuenta.getTipoCuenta(), nuevaCuenta.getSaldo(), nuevaCuenta.getCodigoCliente(), nuevaCuenta.getEstado())
 
         if op == 2:
@@ -107,26 +107,38 @@ def menuAdministrador():
             opt = int(input('1.- crear \n2.- modificar \n3.- eliminar \n4.- consultar:\n' ))
              
             if opt == 1:
-                nwCliente = Cuenta()
-                nuevaConexion.ingresarCliente(nwCliente.getCodigoCuenta(), nwCliente.getTipoCuenta(), nwCliente.getSaldo(), nwCliente.getCodigoCliente(), nwCliente.getIdUsuario(), nwCliente.getEstado())
+                print('ingrese datos de la cuenta')
+                a = input("ingrese id cuenta: ")
+                b = input("ingrese codigo usuario (ya debe existir!) ")
+
+                nuevaCuenta = Cuenta(codigoCuenta = a, codigoUsuario = b)
+                nuevaConexion.ingresarCuenta(nuevaCuenta.getCodigoCuenta(), nuevaCuenta.getTipoCuenta(), nuevaCuenta.getSaldo(), nuevaCuenta.getCodigoCliente(), nuevaCuenta.getEstado())
             
             if opt == 2:
-                print('Modificar cliente (solo estado)')
+                print('Modificar cliente (solo estado [0 , 1, 2, 99])')
                 id = input('ingrese codigo cuenta: ')
-                nuevaConexion.modificarElemento(id)
+                estado = int(input('ingrese nuevo estado: '))
+                nuevaConexion.modificarCuentaEstado(id, estado)
+            
+            if opt == 3:
+                print('Eliminar cuenta')
+                id = input('ingrese id de cuenta a borrar: ')
+                nuevaConexion.borrarCuenta()
 
             if opt == 4:
                 print('consulta de cliente')
                 id = input('ingrese id: ')
-                cli = nuevaConexion.mostrarCliente(id)
-                cliente = Cuenta(cli[0], cli[1], cli[2], cli[3], cli[4], cli[5])
-                print(cliente.getNombre())
-        
+                resultado = nuevaConexion.mostrarCuentaIdCuenta(id)
+                if resultado == None:
+                    print('id usuario no existe:')
+                else:
+                    print('id cuenta es: {}, y su saldo es: {}'.format(resultado[0], resultado[2]))
         if op == 3:
             print("adios")
+            nuevaConexion.cerrarConexion()
             menu = False
 
 #koko = Connection()
 #koko.ingresarCuenta("111", "visa", "10010000", "222", 1)
 #codigousuario 	nombrecliente 	nombreusuario 	password 	estado 	tipousuario 	
-menuCliente(('214', "asjs", "wonka", '1234', 1, "cliente"))
+#menuCliente(('214', "asjs", "wonka", '1234', 1, "cliente"))

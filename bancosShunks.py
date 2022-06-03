@@ -78,7 +78,7 @@ class Cuenta:
             print('giro realizado')
             return True
         else:
-            print("no se puede girar")
+            print("no se puede girar, saldo insuficiente :(")
             return False
 
 

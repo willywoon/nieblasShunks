@@ -53,9 +53,24 @@ class Connection:
             print("saldo modificado")
         except Exception as e:
             raise
+
+    def modificarCuentaEstado(self,id, estado):
+        sql = "UPDATE cuentas SET estado = {} WHERE idcuenta = '{}'".format(estado, id)
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+            print("saldo modificado")
+        except Exception as e:
+            raise
     
-    def borrarCuenta(self):
-        pass
+    def borrarCuenta(self, id):
+        sql = "DELETE FROM cuentas WHERE idcuenta = '{}'".format(id)
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+            print('cuenta borrada')
+        except Exception as e:
+            raise
 
     def ingresarCuenta(self, idcuenta, tipocuenta, saldo, codigoUsuario, estado):
         sql = "INSERT INTO cuentas (idcuenta, tipocuenta, saldo, codigousuario, estado) VALUE ('{}', '{}', '{}', '{}', {})".format(idcuenta, tipocuenta, saldo, codigoUsuario, estado)
