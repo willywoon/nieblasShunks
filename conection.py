@@ -105,10 +105,3 @@ class Connection:
         self.connection.close()
         print('conexion cerrada!')
 
-#nw = Connection()
-#nw.ingresarUsuario('sasdhs', 'vista', 0, '18728y', '715681', 1)
-#nw = Connection()
-#nw.ingresarUsuario('ggsefg', 'LunaAdm', 'mushweunga', '12we3456', 1, 'adm')
-#nw.ingresarUsuario('kdjf34', 'Luna', 'mushunga', '123456', 1, 'cliente')
-
-#nw.modificarCuenta(234, 100)

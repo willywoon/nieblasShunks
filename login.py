@@ -11,13 +11,12 @@ def loginn():
 
     db = Connection()
     listaUser = db.mostrarUsuarios()
-    #print(listaUse
 
     pedasitos = True
 
     while pedasitos:
 
-        print("igrese usario y contraseña validos")
+        print("ingrese usario y contraseña validos")
         user = input('ingrese usuario: ')
         password = input('ingrese contraseña: ')
 

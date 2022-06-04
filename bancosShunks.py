@@ -82,9 +82,3 @@ class Cuenta:
             return False
 
 
-#nuevoCliente = Cuenta('2323', '35', saldo= 1020)
-#print(nuevoCliente.consultarSaldo())
-#nuevoCliente.depositar(1000)
-#print(nuevoCliente.girar(200))
-#print(nuevoCliente.consultarSaldo())
-

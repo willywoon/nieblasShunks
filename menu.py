@@ -138,7 +138,3 @@ def menuAdministrador():
             nuevaConexion.cerrarConexion()
             menu = False
 
-#koko = Connection()
-#koko.ingresarCuenta("111", "visa", "10010000", "222", 1)
-#codigousuario 	nombrecliente 	nombreusuario 	password 	estado 	tipousuario 	
-#menuCliente(('214', "asjs", "wonka", '1234', 1, "cliente"))
