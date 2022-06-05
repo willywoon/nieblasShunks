@@ -1,3 +1,4 @@
+from cgi import print_arguments
 import pymysql, os
 os.system('cls')
 
@@ -18,7 +19,7 @@ class Connection:
 #-------------------clientes----------------->
 
     def mostrarTodos(self):
-        sql = 'SELECT * FROM clientes'
+        sql = 'SELECT * FROM cuentas'
         try:
             self.cursor.execute(sql)
             resultado = self.cursor.fetchall()
@@ -59,7 +60,7 @@ class Connection:
         try:
             self.cursor.execute(sql)
             self.connection.commit()
-            print("saldo modificado")
+            print("estado modificado")
         except Exception as e:
             raise
     
@@ -104,4 +105,34 @@ class Connection:
     def cerrarConexion(self):
         self.connection.close()
         print('conexion cerrada!')
+
+#------------transacciones------------------->
+
+    def verTrasaccion(self, id):
+        sql = "SELECT * FROM transacciones WHERE idcuenta = '{}'".format(id)
+        try:
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchall()
+            for transacion in resultado:
+                print('id transacion: {}'.format(transacion[0]))
+                print('cuenta de origen: {}'.format(transacion[1]))
+                print('fecha: {}'.format(transacion[2]))
+                print('cuenta de destino: {}'.format(transacion[3]))
+                print('monto: {}'.format(transacion[4]))
+                print('tipo: {}'.format(transacion[5]))
+
+                print('-------------------->')
+        except Exception as e:
+            raise
+
+    def ingresarTransaccion(self, idCuenta, cuentaDestino, monto, tipo):
+        sql = "INSERT INTO transacciones (idcuenta, fecha, cuentadestino, monto, tipo) VALUES ('{}', CURRENT_TIMESTAMP, '{}', {}, '{}')".format(idCuenta, cuentaDestino, monto, tipo)
+        try:
+            self.cursor.execute(sql)
+            self.connection.commit()
+            print('transaccion registrada.')
+        except:
+            raise
+        
+
 

@@ -1,6 +1,6 @@
-from menu import menuCliente
+from menuCliente import menuCliente
 from login import loginn
-from menu import menuAdministrador
+from menuAdm import menuAdm
 
 
 print("""
@@ -11,7 +11,7 @@ usuario = loginn()
 tipo = usuario[5]
 
 if tipo == 'adm':
-    menuAdministrador()
+    menuAdm()
 elif tipo == 'cliente':
     menuCliente(usuario)
 else:
