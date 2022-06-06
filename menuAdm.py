@@ -1,5 +1,7 @@
+import os
 from conection import Connection
 from bancosShunks import Cuenta
+from login import cifrar
 
 def menuAdm():
 
@@ -27,7 +29,9 @@ def menuAdm():
             e = input("ingrese  estado usuario: ")
             f = input("ingrese tipo usuario (adm o cliente): ")
 
-            nuevaConexion.ingresarUsuario(a, b, c, d, e, f)
+            passCifrada = cifrar(d, 'md5')
+
+            nuevaConexion.ingresarUsuario(a, b, c, passCifrada, e, f)
 
             if f == 'cliente':
 
@@ -37,12 +41,12 @@ def menuAdm():
                 nuevaConexion.ingresarCuenta(nuevaCuenta.getCodigoCuenta(), nuevaCuenta.getTipoCuenta(), nuevaCuenta.getSaldo(), nuevaCuenta.getCodigoCliente(), nuevaCuenta.getEstado())
 
         if op == 2:
-
+            os.system('cls')
             print('CRUD de cliente: ')
-
             opt = int(input('1.- crear \n2.- modificar \n3.- eliminar \n4.- consultar:\n' ))
              
             if opt == 1:
+                os.system('cls')
                 print('ingrese datos de la cuenta')
                 a = input("ingrese id cuenta: ")
                 b = input("ingrese codigo usuario (ya debe existir!) ")
@@ -51,12 +55,23 @@ def menuAdm():
                 nuevaConexion.ingresarCuenta(nuevaCuenta.getCodigoCuenta(), nuevaCuenta.getTipoCuenta(), nuevaCuenta.getSaldo(), nuevaCuenta.getCodigoCliente(), nuevaCuenta.getEstado())
             
             if opt == 2:
-                print('Modificar cliente (solo estado [0 , 1, 2, 99])')
-                id = input('ingrese codigo cuenta: ')
-                estado = int(input('ingrese nuevo estado: '))
-                nuevaConexion.modificarCuentaEstado(id, estado)
+                print('1. Modificar estado.\n2. Modificar saldo\n')
+                opc = int(input('ingrese opcion: '))
+                if opc == 1:
+                    os.system('cls')
+                    print('Modificar cliente (solo estado [0 , 1, 2, 99])')
+                    id = input('ingrese codigo cuenta: ')
+                    estado = int(input('ingrese nuevo estado: '))
+                    nuevaConexion.modificarCuentaEstado(id, estado)
+                elif opc == 2:
+                    os.system('cls')
+                    print('Modificar saldo cliente.')
+                    id = input('ingrese codigo cuenta: ')
+                    monto = int(input('ingrese nuevo monto: '))
+                    nuevaConexion.modificarCuenta(id, monto)
             
             if opt == 3:
+                os.system('cls')
                 print('Eliminar cuenta')
                 id = input('ingrese id de cuenta a borrar: ')
                 nuevaConexion.borrarCuenta()
@@ -69,6 +84,8 @@ def menuAdm():
                     print('id usuario no existe:')
                 else:
                     print('id cuenta es: {}, y su saldo es: {}'.format(resultado[0], resultado[2]))
+                    print('movimientos')
+                    nuevaConexion.verTrasaccion(id)
         if op == 3:
             print("adios")
             nuevaConexion.cerrarConexion()

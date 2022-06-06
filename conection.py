@@ -1,4 +1,3 @@
-from cgi import print_arguments
 import pymysql, os
 os.system('cls')
 

@@ -2,7 +2,6 @@ class Cuenta:
 
     #--------------constructor------------------------>
 
-
     def __init__(self, codigoCuenta = '1234', tipoCuenta = 'Vista', saldo = 0, codigoUsuario = '2342', estado = 1, nombre = 'Wonka') :
         
         self.__codigoCuenta = codigoCuenta          #idcuenta

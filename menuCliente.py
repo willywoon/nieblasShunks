@@ -1,3 +1,4 @@
+import os
 from conection import Connection
 from bancosShunks import Cuenta
 
@@ -24,6 +25,7 @@ def menuCliente(user):
         op = int(input('ingrese opcion: '))
 
         if op == 1:
+            os.system('cls')
             print('Depositar a una cuenta')
             accion = 'deposito'
             id = input('ingrese id cuenta destino: ')
@@ -40,9 +42,10 @@ def menuCliente(user):
                 nuevaConexion.modificarCuenta(id, cuentaDestino.getSaldo())
 
             #---------------------registro transaccion----------->
-            nuevaConexion.ingresarTransaccion(nwUser.getCodigoCuenta(), id, monto, accion)
+                nuevaConexion.ingresarTransaccion(nwUser.getCodigoCuenta(), id, monto, accion)
             
         if op == 2:
+            os.system('cls')
             print('Realizar giro')
             monto = int(input('ingrese monto: '))
             nwUser.girar(monto)
@@ -53,16 +56,19 @@ def menuCliente(user):
             nuevaConexion.ingresarTransaccion(nwUser.getCodigoCuenta(), 'giro', monto, accion)
 
         if op == 3:
+            os.system('cls')
             print('Consultar saldo')
             print("Su saldo actual es: ", nwUser.getSaldo())
 
         if op == 4:
+            os.system('cls')
             print('estado de cuenta')
+            print('------------------------------>')
             nuevaConexion.verTrasaccion(nwUser.getCodigoCuenta())
             print('saldo actual: ', nwUser.getSaldo())
-            print('todas las transacciones y estado de cuenta')
 
         if op == 5:
+            os.system('cls')
             print("adios")
             nuevaConexion.cerrarConexion()
             menu = False
