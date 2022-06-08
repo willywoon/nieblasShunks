@@ -33,16 +33,26 @@ def menuCliente(user):
             monto = int(input('ingrese monto: '))
             
             if nwUser.girar(monto):
-                nuevaConexion.modificarCuenta(nwUser.getCodigoCuenta(), nwUser.getSaldo()) # modificacion en la base de datos
 
                 #-------------------------enviar dinero cuenta de destino
                 destino = nuevaConexion.mostrarCuentaIdCuenta(id)
                 cuentaDestino = Cuenta(destino[0], destino[1], destino[2], destino[3], destino[4])
-                cuentaDestino.depositar(monto)
-                nuevaConexion.modificarCuenta(id, cuentaDestino.getSaldo())
+
+                if cuentaDestino.getEstado() == 1:
+
+                    if cuentaDestino.depositar(monto):
+
+                        nuevaConexion.modificarCuenta(nwUser.getCodigoCuenta(), nwUser.getSaldo()) # modificacion en la base de datos
+                        nuevaConexion.modificarCuenta(id, cuentaDestino.getSaldo())
 
             #---------------------registro transaccion----------->
-                nuevaConexion.ingresarTransaccion(nwUser.getCodigoCuenta(), id, monto, accion)
+                        nuevaConexion.ingresarTransaccion(nwUser.getCodigoCuenta(), id, monto, accion)
+                    else:
+                        print('error!')
+                else:
+                    print('revisar estado de la cuenta', cuentaDestino.getEstado() )
+            else:
+                print('no se puede depositar')
             
         if op == 2:
             os.system('cls')
@@ -62,7 +72,8 @@ def menuCliente(user):
 
         if op == 4:
             os.system('cls')
-            print('estado de cuenta')
+            print('"Estado de cuenta"')
+            print('------------------------------>')            
             print('------------------------------>')
             nuevaConexion.verTrasaccion(nwUser.getCodigoCuenta())
             print('saldo actual: ', nwUser.getSaldo())

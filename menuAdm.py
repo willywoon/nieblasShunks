@@ -83,9 +83,12 @@ def menuAdm():
                 if resultado == None:
                     print('id usuario no existe:')
                 else:
-                    print('id cuenta es: {}, y su saldo es: {}'.format(resultado[0], resultado[2]))
-                    print('movimientos')
-                    nuevaConexion.verTrasaccion(id)
+                    print('id cuenta es: {}, su saldo es: {} estado: {}'.format(resultado[0], resultado[2], resultado[4]))
+                    print('movimientos:')
+                    if nuevaConexion.verTrasaccion(id) == None:
+                        print('sin movimientos--->')
+                    else:
+                        nuevaConexion.verTrasaccion(id)
         if op == 3:
             print("adios")
             nuevaConexion.cerrarConexion()

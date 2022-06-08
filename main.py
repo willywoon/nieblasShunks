@@ -16,4 +16,5 @@ elif tipo == 'cliente':
     menuCliente(usuario)
 else:
     print('error!')
+    
 
