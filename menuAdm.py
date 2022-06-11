@@ -1,4 +1,5 @@
 import os
+import random
 from conection import Connection
 from bancosShunks import Cuenta
 from login import cifrar
@@ -21,23 +22,26 @@ def menuAdm():
         op = int(input('ingrese opcion: '))
 
         if op == 1:
+            control = True
             print('Crear cuenta de usuarios (adm o cliente)')
-            a = input("ingrese codigo usuario: ")
+            randomCodigoUsuario = random.randint(0, 999)
             b = input("ingrese nombre cliente: ")
             c = input("ingrese nombre usuario (para loguiar): ")
-            d = input("ingrese password usuario (contraseña para loguaer): ")
+            passUsuario = input("ingrese password usuario (contraseña para loguaer): ")
             e = input("ingrese  estado usuario: ")
-            f = input("ingrese tipo usuario (adm o cliente): ")
+            while control:
+                tipoUsuario = input("ingrese tipo usuario (adm o cliente): ")
+                if tipoUsuario == 'adm' or tipoUsuario == 'cliente':
+                    passCifrada = cifrar(passUsuario, 'md5')
+                    control = False
 
-            passCifrada = cifrar(d, 'md5')
+            nuevaConexion.ingresarUsuario(randomCodigoUsuario, b, c, passCifrada, e, tipoUsuario)
 
-            nuevaConexion.ingresarUsuario(a, b, c, passCifrada, e, f)
+            if tipoUsuario == 'cliente':
 
-            if f == 'cliente':
-
-                print("creacion cliente default con nombre y codigo de usuario")
-                idCuenta = input('ingrese id cuenta: ')
-                nuevaCuenta = Cuenta(codigoCuenta = idCuenta, nombre = b, codigoUsuario = a)
+                print("creacion cliente default")
+                idCuentaRandom = random.randint(0, 999)
+                nuevaCuenta = Cuenta(codigoCuenta = idCuentaRandom, nombre = b, codigoUsuario = randomCodigoUsuario)
                 nuevaConexion.ingresarCuenta(nuevaCuenta.getCodigoCuenta(), nuevaCuenta.getTipoCuenta(), nuevaCuenta.getSaldo(), nuevaCuenta.getCodigoCliente(), nuevaCuenta.getEstado())
 
         if op == 2:
@@ -94,3 +98,6 @@ def menuAdm():
             nuevaConexion.cerrarConexion()
             menu = False
 
+
+
+menuAdm()
