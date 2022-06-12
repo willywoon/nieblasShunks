@@ -23,7 +23,13 @@ class Connection:
             self.cursor.execute(sql)
             resultado = self.cursor.fetchall()
             for cliente in resultado:
-                print(cliente)
+                print('id de cuenta:', cliente[0])
+                print('tipo de cuenta:', cliente[1])
+                print('saldo:', cliente[2])
+                print('codigo de usuario:', cliente[3])
+                print('estado cuenta (activo=1, desactivado=0):', cliente[4])
+                print('------------------------------>')
+            return resultado
         except Exception as e:
             raise
     
@@ -31,7 +37,7 @@ class Connection:
         sql = "SELECT * FROM cuentas WHERE codigousuario = '{}'".format(id)
         try:
             self.cursor.execute(sql)
-            resultado = self.cursor.fetchone()
+            resultado = self.cursor.fetchall()
             return resultado
         except Exception as e:
             raise
@@ -89,6 +95,15 @@ class Connection:
             self.cursor.execute(sql)
             self.connection.commit()
             print("usuario ingresado :)")
+        except Exception as e:
+            raise
+    
+    def mostrarUnUsuario(self, id):
+        sql = 'SELECT * FROM usuarios WHERE codigousuario = {}'.format(id)
+        try:
+            self.cursor.execute(sql)
+            resultado = self.cursor.fetchone()
+            return resultado
         except Exception as e:
             raise
 

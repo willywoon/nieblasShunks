@@ -1,5 +1,6 @@
 import hashlib
 from conection import Connection
+from getpass import getpass
 
 def cifrar(valor, tipo):
 
@@ -40,14 +41,13 @@ def loginn():
 
         print("ingrese usario y contraseña validos")
         user = input('ingrese usuario: ')
-        password = input('ingrese contraseña: ')
-        # transformar --------->
+        password = getpass('ingrese contraseña: ')
+        # cifrar contraseña --------->
         passCifrada = cifrar(password, 'md5')
 
         for usuario in listaUser:
-            if user == usuario[2]:  
+            if user == usuario[2]:
                 if comparacionPass(passCifrada, usuario[3]):
                     pedasitos == False
                     return usuario
-
 

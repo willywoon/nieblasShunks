@@ -6,10 +6,10 @@ def menuCliente(user):
 
     menu = True
     nuevaConexion = Connection()
-
-    dinosaurio = nuevaConexion.mostrarCuentaCodigoUsuario(user[0])     #transformacion de datos en un objeto tipo cuenta
+    dinosaurioo = nuevaConexion.mostrarCuentaCodigoUsuario(user[0])     #transformacion de datos en un objeto tipo cuenta
+    dinosaurio = dinosaurioo[0]
     nwUser = Cuenta(dinosaurio[0], dinosaurio[1], dinosaurio[2], dinosaurio[3], dinosaurio[4], user[1])
-    
+
     while menu:
 
         print("""
@@ -73,8 +73,8 @@ def menuCliente(user):
         if op == 4:
             os.system('cls')
             print('"Estado de cuenta"')
-            print('------------------------------>')            
-            print('------------------------------>')
+            print(2 *'------------------------------>')            
+            #print('------------------------------>')
             nuevaConexion.verTrasaccion(nwUser.getCodigoCuenta())
             print('saldo actual: ', nwUser.getSaldo())
 

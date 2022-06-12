@@ -1,4 +1,6 @@
 import hashlib
+import getpass
+from getpass import getpass
 
 def cifrar(valor, tipo):
 
@@ -16,12 +18,14 @@ def cifrar(valor, tipo):
         md5 = hashlib.md5(b'sinclave')
         md5.update (valor.encode ('utf-8'))
         resultadoCifrado = md5.hexdigest()
-        print("resultado de cifrado md5:", resultadoCifrado)
+        #print("resultado de cifrado md5:", resultadoCifrado)
         return resultadoCifrado 
 
+#x = getpass("ingresa contraseña: ")
 
-a = cifrar('hola', 'md5')
-b = cifrar('hola', 'sha1')
+
+a = cifrar("123", 'md5')
+#b = cifrar(x, 'sha1')
 
 print(a)
-print(b)
+#print(b)
